@@ -7,6 +7,8 @@ dotenv.config();
 const pool = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const projectRoutes = require('./routes/projectRoutes');
+const taskRoutes = require('./routes/taskRoutes');
+const collaboratorRoutes = require('./routes/collaboratorRoutes');
 const { createUserTable } = require('./models/User');
 const { createProjectTable } = require('./models/Project');
 
@@ -18,6 +20,8 @@ app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/projects', projectRoutes);
+app.use('/api/tasks', taskRoutes);
+app.use('/api/collaborators', collaboratorRoutes);
 
 app.get('/', (req, res) => {
   res.send('CollabSphere API is running!');
