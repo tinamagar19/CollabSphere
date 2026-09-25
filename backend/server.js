@@ -9,6 +9,7 @@ const authRoutes = require('./routes/authRoutes');
 const projectRoutes = require('./routes/projectRoutes');
 const taskRoutes = require('./routes/taskRoutes');
 const collaboratorRoutes = require('./routes/collaboratorRoutes');
+const commentRoutes = require('./routes/commentRoutes');
 const { createUserTable } = require('./models/User');
 const { createProjectTable } = require('./models/Project');
 
@@ -22,6 +23,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/api/collaborators', collaboratorRoutes);
+app.use('/api/comments', commentRoutes);
 
 app.get('/', (req, res) => {
   res.send('CollabSphere API is running!');
