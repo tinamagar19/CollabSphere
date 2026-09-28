@@ -1,11 +1,11 @@
 const pool = require('../config/db');
 
 const createTask = async (req, res) => {
-  const { title, status, project_id } = req.body;
+  const { title, description, projectId } = req.body;
   try {
     const [result] = await pool.query(
-      'INSERT INTO tasks (title, status, project_id) VALUES (?, ?, ?)',
-      [title, status || 'pending', project_id]
+      'INSERT INTO tasks (title, description, status, projectId) VALUES (?, ?, ?, ?)',
+      [title, description || 'pending', 'pending', projectId]
     );
     res.status(201).json({ message: 'Task created successfully', taskId: result.insertId });
   } catch (error) {
@@ -17,7 +17,7 @@ const createTask = async (req, res) => {
 const getTasksByProject = async (req, res) => {
   const { projectId } = req.params;
   try {
-    const [rows] = await pool.query('SELECT * FROM tasks WHERE project_id = ?', [projectId]);
+    const [rows] = await pool.query('SELECT * FROM tasks WHERE projectId = ?', [projectId]);
     res.status(200).json(rows);
   } catch (error) {
     console.error('Error fetching tasks:', error);
